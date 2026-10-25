@@ -67,7 +67,7 @@ The mean-linear head maps $\mathbf z_i$ directly to two outputs. The mean-MLP he
 
 $$
  \hat{\mathbf y}_i=f_{\theta}(x_i)
- =\mathbf W_2\operatorname{ReLU}(\mathbf W_1\mathbf z_i+\mathbf b_1)+\mathbf b_2. \tag{3}
+ =\mathbf W_2\mathrm{ReLU}(\mathbf W_1\mathbf z_i+\mathbf b_1)+\mathbf b_2. \tag{3}
 $$
 
 For the source attention comparison, a scalar linear score supplies softmax weights over $\mathbf h_{i,t}$, followed by the same 32-unit head. The respective trainable parameter counts are 1,538, 24,674 and 25,443. Attention therefore adds 769 parameters and is not an exactly parameter-matched comparison. A training-mean constant is included as a source reference. The external experiment fixes the mean-MLP architecture and all three source checkpoints rather than selecting an architecture using PMEmo scores.
@@ -119,7 +119,7 @@ Equation (6) uses a summed squared-error loss. Replacing the sum by an average w
 For an evaluation set $\mathcal E$, define residuals $e_i=y_i-p_i$ and their mean $\bar e_{\mathcal E}$. A fitted offset of strength $\alpha$ produces the exact empirical identity
 
 $$
- \Delta\operatorname{MSE}
+ \Delta\mathrm{MSE}
  =\frac{1}{|\mathcal E|}\sum_{i\in\mathcal E}
  \left[(e_i-\alpha\hat\mu_b)^2-e_i^2\right]
  =\alpha^2\hat\mu_b^2-2\alpha\hat\mu_b\bar e_{\mathcal E}. \tag{8}
@@ -132,13 +132,13 @@ This follows by expanding the square. It shows why a support-derived offset can 
 For each axis, MSE and mean absolute error (MAE) are computed over evaluation excerpts. Pearson correlation measures centered linear association. Concordance correlation (CCC) is attributed to Lin [13] and is also used in the DEAM benchmark [3]. With empirical moments using divisor $N$,
 
 $$
- \operatorname{MSE}=\frac1N\sum_i(y_i-q_i)^2,
- \quad \operatorname{MAE}=\frac1N\sum_i|y_i-q_i|,
- \quad \rho_c=\frac{2\operatorname{cov}(y,q)}
- {\operatorname{var}(y)+\operatorname{var}(q)+(\bar y-\bar q)^2}. \tag{9}
+ \mathrm{MSE}=\frac1N\sum_i(y_i-q_i)^2,
+ \quad \mathrm{MAE}=\frac1N\sum_i|y_i-q_i|,
+ \quad \rho_c=\frac{2\mathrm{cov}(y,q)}
+ {\mathrm{var}(y)+\mathrm{var}(q)+(\bar y-\bar q)^2}. \tag{9}
 $$
 
-We also report $R^2=1-\operatorname{MSE}/\operatorname{var}(y)$. Undefined correlation for a constant predictor is retained as undefined rather than assigned zero. Metrics are computed per seed–draw condition before averaging, rather than on an ensemble of averaged predictions.
+We also report $R^2=1-\mathrm{MSE}/\mathrm{var}(y)$. Undefined correlation for a constant predictor is retained as undefined rather than assigned zero. Metrics are computed per seed–draw condition before averaging, rather than on an ensemble of averaged predictions.
 
 For the fixed budget and method, let $j$ index an evaluation identity-group representative, $s$ a source-model seed and $d$ an adaptation draw. The paired group-level error change is
 

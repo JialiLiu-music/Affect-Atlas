@@ -4,7 +4,7 @@ A draft paper on few-shot, cross-dataset output calibration for music emotion re
 
 ## Reading Guide
 
-- [English manuscript](manuscript_en.md)
+- [Paper](manuscript_en.md)
 - [HTML version](manuscript_en.html) (GitHub displays the source; download the repository and open it locally to read)
 - [Editable Word version](manuscript_en.docx)
 - [Figures and captions](figures/captions.md)
