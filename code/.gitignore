@@ -1,0 +1,16 @@
+# Generated dependencies and build outputs
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/dist/
+**/.output/
+**/.tanstack/
+**/.turbo/
+**/*.py[cod]
+.runtime/
+models/
+.env
+.env.*
+!.env.example
+*.log

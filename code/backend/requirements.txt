@@ -1,0 +1,11 @@
+-r requirements-api.txt
+# Install CPU torch separately from https://download.pytorch.org/whl/cpu.
+# Exact build constraint prevents nnAudio from pulling another Torch variant.
+torch==2.6.0+cpu
+transformers==4.38.2
+huggingface-hub==0.26.5
+numpy==1.26.4
+soundfile==0.13.1
+librosa==0.10.2.post1
+nnAudio==0.3.3
+safetensors==0.5.3

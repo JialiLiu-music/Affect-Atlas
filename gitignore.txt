@@ -1,0 +1,21 @@
+# Local plotting dependencies and generated runtime caches
+figures/_deps/
+figures/_mplconfig/
+scripts/_math_deps/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor and operating-system temporary files
+.vscode/
+.DS_Store
+Thumbs.db
+~$*
+
+# Local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key

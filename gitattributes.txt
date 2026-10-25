@@ -1,0 +1,2 @@
+# Preserve artifact bytes, including JSON hashes and generated documents.
+* -text
