@@ -1,42 +1,42 @@
 # Low-Label Output Calibration for Music Emotion Regression
 
-音乐情绪跨数据集少样本输出校准论文初稿及配套图表。
+A draft paper on few-shot, cross-dataset output calibration for music emotion regression, with accompanying figures and supporting materials.
 
-## 阅读入口
+## Reading Guide
 
-- [英文论文正文](manuscript_en.md)
-- [HTML阅读版本](manuscript_en.html)（GitHub显示源代码，可下载仓库后本地打开）
-- [Word可编辑版本](manuscript_en.docx)
-- [图表及图注](figures/captions.md)
-- [文献证据记录](working/literature_evidence.json)
+- [English manuscript](manuscript_en.md)
+- [HTML version](manuscript_en.html) (GitHub displays the source; download the repository and open it locally to read)
+- [Editable Word version](manuscript_en.docx)
+- [Figures and captions](figures/captions.md)
+- [Literature evidence records](working/literature_evidence.json)
 
-## 研究内容
+## Research Overview
 
-使用冻结MERT音乐表征和DEAM训练的情绪预测头，在PMEmo完整副歌数据上比较5/10首评分预算下的输出校正。预设10首评分、仅唤醒度半强度偏移的主要对比，在334个固定评价风险组代表上使唤醒度均方误差平均降低13.50%。论文正文和附录记录了数据职责、完整对照、适应池稳定性以及结论适用范围。
+Using frozen MERT music representations and an emotion prediction head trained on DEAM, this study compares output calibration with labeling budgets of 5 or 10 songs on complete PMEmo choruses. In the prespecified primary comparison, calibration with 10 labeled songs and a half-strength offset applied only to arousal reduced arousal mean squared error by an average of 13.50% across 334 fixed evaluation risk-group representatives. The manuscript and appendices document dataset roles, full comparisons, adaptation-pool stability, and the scope of the conclusions.
 
-当前为英文论文初稿，作者信息、目标期刊模板及正式投稿声明需要后续补充。
+The manuscript is currently an English-language draft. Author information, the target journal template, and formal submission declarations remain to be added.
 
-## CPU音乐情绪演示网站
+## CPU Music Emotion Demo
 
-网站源码位于 [`code/`](code/README.md)，前后端分离：React/TypeScript中文页面与FastAPI CPU后端。支持上传片段、整体双轴预测、10秒窗口/5秒步长评分曲线、播放联动及JSON/CSV导出。窗口曲线来自静态模型，不是经验证的逐秒动态识别；默认无目标域校正。
+The demo source is available in [`code/`](code/README.md), with a React/TypeScript frontend in Chinese and a separate FastAPI CPU backend. It supports audio clip uploads, overall valence–arousal predictions, exploratory scores with 10-second windows and a 5-second hop, playback synchronization, and JSON/CSV export. The window curves come from a static model and do not represent validated second-by-second dynamic emotion recognition. Target-domain calibration is disabled by default.
 
-启动、固定MERT下载和论文预测头校验见 [`code/README.md`](code/README.md)。仓库不包含模型权重、试听音乐、虚拟环境或node_modules；克隆代码后仍需准备真实模型资产。自动测试与真实CPU执行的范围见 [`code/VALIDATION.md`](code/VALIDATION.md) 和 [`code/TIMELINE_UPGRADE-20261012.md`](code/TIMELINE_UPGRADE-20261012.md)。本仓库源码上传不等于公网网站部署。
+See [`code/README.md`](code/README.md) for startup instructions, the pinned MERT download, and verification of the paper's prediction head. Model weights, sample music, virtual environments, and `node_modules` are excluded from the repository; real model assets must be prepared after cloning. The scope of automated tests and real CPU execution checks is documented in [`code/VALIDATION.md`](code/VALIDATION.md) and [`code/TIMELINE_UPGRADE-20261012.md`](code/TIMELINE_UPGRADE-20261012.md). Publishing the source code does not deploy a publicly accessible website.
 
-## 文件结构
+## Repository Structure
 
-- `manuscript_en.*`：Markdown、HTML和Word正文。
-- `figures/`：6幅图的PNG/PDF/SVG、图注及来源校验manifest。
-- `scripts/`：图表生成、正文结构检查和版本导出脚本。
-- `working/`：证据地图、文献记录、章节蓝图及修订说明。
+- `manuscript_en.*`: Manuscript in Markdown, HTML, and Word formats.
+- `figures/`: Six figures in PNG/PDF/SVG formats, captions, and a source-verification manifest.
+- `scripts/`: Scripts for figure generation, manuscript structure checks, and document export.
+- `working/`: Evidence maps, literature records, chapter blueprints, and revision notes.
 
-## 脚本说明
+## Scripts
 
-在本目录运行 `python scripts/audit_manuscript.py` 可检查正文结构与文件引用。
+Run `python scripts/audit_manuscript.py` from the repository root to check manuscript structure and file references.
 
-`python scripts/build_manuscript_outputs.py` 从Markdown更新HTML和Word。先安装 `python -m pip install -r scripts/requirements-documents.txt`（Python 3.10及以上）。HTML使用原生MathML离线显示公式，适合现代Chrome、Edge或Firefox；Word使用Pandoc转换为可编辑的原生公式对象。Markdown采用GitHub支持的 `$...$` 和 `$$...$$` 公式定界符。
+Run `python scripts/build_manuscript_outputs.py` to regenerate HTML and Word files from Markdown. Install the dependencies first with `python -m pip install -r scripts/requirements-documents.txt` (Python 3.10 or later). HTML renders equations offline using native MathML and is suitable for modern Chrome, Edge, or Firefox. Word export uses Pandoc to create editable native equation objects. Markdown uses GitHub-supported `$...$` and `$$...$$` math delimiters.
 
-运行 `python scripts/test_math_rendering.py` 可核验10个独立公式、行内公式、Word公式结构，并检查相对于原始提交的数学表达式保持不变。`python scripts/test_reporting_integrity.py` 检查贡献措辞修订前后的完整结果表、附录、参考文献和必要限制保持一致。GitHub源码页面只展示HTML代码，阅读HTML需要本地打开；阅读Markdown时请使用渲染视图而非Raw源码。
+Run `python scripts/test_math_rendering.py` to verify the 10 standalone equations, inline equations, and Word equation structure, and to check that mathematical expressions are unchanged from the original commit. Run `python scripts/test_reporting_integrity.py` to check that the full results tables, appendices, references, and required limitations remain consistent before and after revisions to the contribution wording. GitHub's source view displays HTML code; open the HTML locally to read it. For Markdown, use the rendered view rather than the Raw source.
 
-图表生成依赖`numpy`、`matplotlib`以及原工作区的`进度/`实验JSON。完整原始实验产物、模型权重、音乐音频与本地安装依赖不包含在本仓库；仓库中的`figure_manifest.json`保留来源路径与SHA记录，不能据此声称已公开完整实验数据。
+Figure generation requires `numpy`, `matplotlib`, and experiment JSON files from the original workspace's `进度/` directory. Complete raw experiment artifacts, model weights, music audio, and locally installed dependencies are excluded from this repository. The `figure_manifest.json` file records source paths and SHA checksums; its presence does not mean that the complete experimental data have been publicly released.
 
-商业歌曲音频未随仓库发布。数据与模型来源请参见论文及参考文献。
+Commercial song audio is not distributed with this repository. See the manuscript and references for dataset and model sources.
